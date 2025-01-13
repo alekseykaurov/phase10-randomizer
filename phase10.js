@@ -37,6 +37,7 @@ $(document).ready(() => {
     $("#game-wrap").slideUp(500);
     $("#game").slideUp(500);
     $("#game-area").slideUp(500);
+    $("#new-game").slideUp(500);
   });
 
   $("#create-game").click(() => {

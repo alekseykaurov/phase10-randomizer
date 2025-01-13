@@ -15,8 +15,8 @@ $(document).ready(() => {
       generateAdvanced();
     }
     $("#generator-result").show();
-    $("#game-wrap").slideDown(500);
     $("#start-game").show();
+    $("#game-wrap").slideDown(500);
 
   });
 
@@ -51,6 +51,22 @@ $(document).ready(() => {
 
 });
 
+$('.playerNameTable')
+    // When you click on item, record into data("initialText") content of this item.
+    .focus(function() {
+        $(this).data("initialText", $(this).html());
+    });
+    // When you leave an item...
+    .blur(function() {
+        // ...if content is different...
+        if ($(this).data("initialText") !== $(this).html()) {
+            // ... do something.
+            console.log('New data when content change.');
+            console.log($(this).html());
+        }
+    });
+});
+
 function createTables(playerCount, phases) {
     // Таблица фаз
     const phaseTableContainer = document.getElementById('phase-table-container');
@@ -59,7 +75,7 @@ function createTables(playerCount, phases) {
     table.border = '1';
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
-    headerRow.innerHTML = `<th>Фаза</th>${Array.from({ length: playerCount }, (_, i) => `<th contenteditable="true">Игрок ${i + 1}</th>`).join('')}`;
+    headerRow.innerHTML = `<th>Фаза</th>${Array.from({ length: playerCount }, (_, i) => `<th contenteditable="true" class="playerNameTable" data-player="${i + 1}">Игрок ${i + 1}</th>`).join('')}`;
     thead.appendChild(headerRow);
     table.appendChild(thead);
 
@@ -82,7 +98,7 @@ function createTables(playerCount, phases) {
     scoreTableBody.innerHTML = '';
     Array.from({ length: playerCount }, (_, i) => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td>Игрок ${i + 1}</td><td contenteditable="true">0</td>`;
+        row.innerHTML = `<td class="playerNameTableScore" data-player="${i + 1}">Игрок ${i + 1}</td><td contenteditable="true">0</td>`;
         scoreTableBody.appendChild(row);
     });
 }

@@ -3,21 +3,80 @@ const maximumDifficulty = 5;
 
 let phaseData;
 let classicPhases;
+let generatedPhases;
 
 $(document).ready(() => {
   $("#generate-phases").click(() => {
+    generatedPhases = [];
     let mode = $("input[name='mode']:checked").val();
     if (mode === "classic") {
       generateClassic();
     } else if (mode === "advanced") {
       generateAdvanced();
     }
+    $("#game-wrap").slideDown(500);
+
   });
 
   let advancedOptions = $("#advanced-options");
   $("#mode-advanced").click(() => advancedOptions.slideDown(500));
   $("#mode-classic").click(() => advancedOptions.slideUp(500));
+
+  $("#start-game").click(() => {
+    $(".header").slideUp(500);
+    $("#generator-result").slideUp(500);
+
+    $("#game").slideDown(500);
+  });
+
+  $("#create-game").click(() => {
+    const playerCount = parseInt(document.getElementById('player-count').value);
+    if (playerCount > 0) {
+      let phases = [];
+      phases = generatePhases(7); // Пример на 7 фаз
+      console.log(generatedPhases);
+        createTables(playerCount, phases);
+        $("#game-area").slideDown(500);
+    }
+  });
+
 });
+
+function generatePhases(count) {
+    // Пример фаз
+    return Array.from({ length: count }, (_, i) => `Фаза ${i + 1}: Собрать ${i + 3} карты`);
+}
+
+function createTables(playerCount, phases) {
+    // Таблица фаз
+    const phaseTableContainer = document.getElementById('phase-table-container');
+    phaseTableContainer.innerHTML = '';
+    const table = document.createElement('table');
+    table.border = '1';
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    headerRow.innerHTML = `<th>Фаза</th>${Array.from({ length: playerCount }, (_, i) => `<th contenteditable="true">Игрок ${i + 1}</th>`).join('')}`;
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    phases.forEach((phase, phaseIndex) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${phase}</td>${Array.from({ length: playerCount }, (_, i) => `<td><input type="radio" name="player_${i + 1}"></td>`).join('')}`;
+        tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+    phaseTableContainer.appendChild(table);
+
+    // Таблица очков
+    const scoreTableBody = document.getElementById('score-table').querySelector('tbody');
+    scoreTableBody.innerHTML = '';
+    Array.from({ length: playerCount }, (_, i) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>Игрок ${i + 1}</td><td contenteditable="true">0</td>`;
+        scoreTableBody.appendChild(row);
+    });
+}
 
 function getData() {
   $.ajax({
@@ -32,7 +91,6 @@ function getData() {
     dataType: "json",
     success: data => classicPhases = data
   });
-  console.log(phaseData);
 }
 
 function presentResult(data, element) {
@@ -150,6 +208,7 @@ function generatePhaseSentence(phase) {
     sentence[1] = generateGoalSentence(phase.Type2, phase.Count2);
   }
 
+  generatedPhases.push(sentence);
   return sentence;
 }
 

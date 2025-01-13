@@ -27,8 +27,8 @@ $(document).ready(() => {
     $("#generator-result").slideUp(500);
 
     $("#game").slideDown(500);
-    $(this).slideUp(500);
-    $("#new-game").slideUp(500);
+    $("#start-game").hide();
+    $("#new-game").show();
   });
 
   $("#new-game").click(() => {

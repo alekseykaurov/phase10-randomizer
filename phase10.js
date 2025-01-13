@@ -51,10 +51,10 @@ $(document).ready(() => {
 
 });
 
-document.querySelectorAll(".playerNameTable").addEventListener("input", function() {
+/*document.querySelectorAll(".playerNameTable").addEventListener("input", function() {
     console.log("input event fired");
     console.log($this.html());
-}, false);
+}, false);*/
 
 function createTables(playerCount, phases) {
     // Таблица фаз

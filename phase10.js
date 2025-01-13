@@ -141,7 +141,7 @@ function getPhaseByRank(rank) {
 
 function generatePhaseSentence(phase) {
   let sentence = [];
-  console.log("phase rank:", phase.Rank);
+  console.log("ранг фазы:", phase.Rank);
   sentence[0] = `<span class="debug-rank" data-rank="${phase.Rank}"></span> `
       + generateGoalSentence(phase.Type1,
           phase.Count1);
@@ -156,21 +156,21 @@ function generatePhaseSentence(phase) {
 function generateGoalSentence(type, count) {
   let sentence = "";
   if (type === 'S') {
-    sentence = "Set of ";
+    sentence = "Набор из ";
   }
   if (type === 'R' || type === 'CR') {
-    sentence = "Run of ";
+    sentence = "Последовательность из ";
   }
   sentence += `<span class="goal-count">${count}</span>`;
   if (type === 'E' || type === 'CE') {
     if (generateRandomInRange(1, 2) === 1) {
-      sentence += " evens";
+      sentence += " Четных карт";
     } else {
-      sentence += " odds";
+      sentence += " Нечетных карт";
     }
   }
   if (type === 'C' || type === 'CR' || type === 'CE') {
-    sentence += " of one colour";
+    sentence += " одного цвета";
   }
   return sentence;
 }

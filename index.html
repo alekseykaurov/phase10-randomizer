@@ -15,32 +15,32 @@
   </head>
   <body>
     <div class="header max-width">
-      <h1>Phase10 Generator</h1>
+      <h1>Phase10 Генератор</h1>
 
-      <label for="mode-fieldset">Mode</label>
+      <label for="mode-fieldset">Режим</label>
       <fieldset id="mode-fieldset" data-role="controlgroup" data-type="horizontal">
-        <label for="mode-classic">Classic</label>
+        <label for="mode-classic">Классический</label>
         <input type="radio" id="mode-classic" value="classic" name="mode" checked="checked"/>
 
-        <label for="mode-advanced">'Outside The Box'</label>
+        <label for="mode-advanced">Расширенный</label>
         <input type="radio" id="mode-advanced" value="advanced" name="mode"/>
       </fieldset>
 
       <div hidden="hidden" id="advanced-options">
         <fieldset class="ui-grid-a">
           <div class="ui-block-a">
-            <label for="difficulty">Difficulty Level</label>
+            <label for="difficulty">Сложность</label>
             <select id="difficulty" name="difficulty">
-              <option value="1">Super Easy</option>
-              <option value="2">Easy</option>
-              <option value="3" selected="selected">Medium</option>
-              <option value="4">Hard</option>
-              <option value="5">Super Hard</option>
-              <option value="all-ranks">Totally Random!</option>
+              <option value="1">Очень Легко</option>
+              <option value="2">Легко</option>
+              <option value="3" selected="selected">Средне</option>
+              <option value="4">Тяжело</option>
+              <option value="5">Очень Тяжело</option>
+              <option value="all-ranks">Случайно</option>
             </select>
           </div>
           <div class="ui-block-b">
-            <label for="phaseCount">Number of Phases</label>
+            <label for="phaseCount">Количество фаз</label>
             <select id="phaseCount" name="phaseCount">
               <option value='1'>1</option>
               <option value='2'>2</option>
@@ -57,12 +57,9 @@
         </fieldset>
       </div>
 
-      <button class="ui-btn ui-corner-all ui-btn-inline" id="generate-phases">Generate Phases
+      <button class="ui-btn ui-corner-all ui-btn-inline" id="generate-phases">Сгенерировать Фазы
       </button>
     </div>
     <div class="results max-width" id="generator-result"></div>
-    <div class="footer">
-      <div style="font-weight: bold; margin: 1rem;">** work in progress **</div>
-    </div>
   </body>
 </html>

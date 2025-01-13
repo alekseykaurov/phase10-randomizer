@@ -27,6 +27,15 @@ $(document).ready(() => {
     $("#generator-result").slideUp(500);
 
     $("#game").slideDown(500);
+    $(this).slideUp(500);
+    $("#new-game").slideUp(500);
+  });
+
+  $("#new-game").click(() => {
+    $(".header").slideDown(500);
+    $("#game-wrap").slideUp(500);
+    $("#game").slideUp(500);
+    $("#game-area").slideUp(500);
   });
 
   $("#create-game").click(() => {
@@ -59,7 +68,7 @@ function createTables(playerCount, phases) {
     const tbody = document.createElement('tbody');
     phases.forEach((phase, phaseIndex) => {
         const row = document.createElement('tr');
-        let phaseText = `Фаза ${phaseIndex + 1}<br>${phase[0]}`;
+        let phaseText = `${phase[0]}`;
         if(phase[1]!=undefined){
           phaseText += `<br>${phase[1]}`
         }

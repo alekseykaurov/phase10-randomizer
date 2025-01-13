@@ -51,20 +51,10 @@ $(document).ready(() => {
 
 });
 
-$('.playerNameTable')
-    // When you click on item, record into data("initialText") content of this item.
-    .focus(function() {
-        $(this).data("initialText", $(this).html());
-    })
-    // When you leave an item...
-    .blur(function() {
-        // ...if content is different...
-        if ($(this).data("initialText") !== $(this).html()) {
-            // ... do something.
-            console.log('New data when content change.');
-            console.log($(this).html());
-        }
-    });
+document.querySelectorAll(".playerNameTable").addEventListener("input", function() {
+    console.log("input event fired");
+    console.log($this.html());
+}, false);
 
 function createTables(playerCount, phases) {
     // Таблица фаз

@@ -55,7 +55,7 @@ $('.playerNameTable')
     // When you click on item, record into data("initialText") content of this item.
     .focus(function() {
         $(this).data("initialText", $(this).html());
-    });
+    })
     // When you leave an item...
     .blur(function() {
         // ...if content is different...

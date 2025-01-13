@@ -16,6 +16,7 @@ $(document).ready(() => {
     }
     $("#generator-result").show();
     $("#game-wrap").slideDown(500);
+    $("#start-game").show();
 
   });
 

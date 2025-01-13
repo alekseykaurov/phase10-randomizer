@@ -32,10 +32,7 @@ $(document).ready(() => {
   $("#create-game").click(() => {
     const playerCount = parseInt(document.getElementById('player-count').value);
     if (playerCount > 0) {
-      let phases = [];
-      phases = generatePhases(7); // Пример на 7 фаз
-      console.log(generatedPhases);
-        createTables(playerCount, phases);
+        createTables(playerCount, generatedPhases);
         $("#game-area").slideDown(500);
     }
   });
@@ -62,7 +59,12 @@ function createTables(playerCount, phases) {
     const tbody = document.createElement('tbody');
     phases.forEach((phase, phaseIndex) => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td>${phase}</td>${Array.from({ length: playerCount }, (_, i) => `<td><input type="radio" name="player_${i + 1}"></td>`).join('')}`;
+        let phaseText = `Фаза ${phaseIndex + 1}<br>${phase[0]}`;
+        if(phase[1]!=undefined){
+          phaseText += `<br>${phase[1]}`
+        }
+
+        row.innerHTML = `<td>${phaseText}</td>${Array.from({ length: playerCount }, (_, i) => `<td><input type="radio" name="player_${i + 1}"></td>`).join('')}`;
         tbody.appendChild(row);
     });
     table.appendChild(tbody);
@@ -200,8 +202,7 @@ function getPhaseByRank(rank) {
 function generatePhaseSentence(phase) {
   let sentence = [];
   console.log("ранг фазы:", phase.Rank);
-  sentence[0] = `<span class="debug-rank" data-rank="${phase.Rank}"></span> `
-      + generateGoalSentence(phase.Type1,
+  sentence[0] = generateGoalSentence(phase.Type1,
           phase.Count1);
 
   if (phase.Type2 != null) {

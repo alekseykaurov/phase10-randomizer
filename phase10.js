@@ -65,7 +65,6 @@ $('.playerNameTable')
             console.log($(this).html());
         }
     });
-});
 
 function createTables(playerCount, phases) {
     // Таблица фаз

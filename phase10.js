@@ -50,11 +50,6 @@ $(document).ready(() => {
 
 });
 
-function generatePhases(count) {
-    // Пример фаз
-    return Array.from({ length: count }, (_, i) => `Фаза ${i + 1}: Собрать ${i + 3} карты`);
-}
-
 function createTables(playerCount, phases) {
     // Таблица фаз
     const phaseTableContainer = document.getElementById('phase-table-container');

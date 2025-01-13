@@ -14,6 +14,7 @@ $(document).ready(() => {
     } else if (mode === "advanced") {
       generateAdvanced();
     }
+    $("#generator-result").show();
     $("#game-wrap").slideDown(500);
 
   });
